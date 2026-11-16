@@ -1,0 +1,44 @@
+{
+  "name": "geopulse",
+  "version": "1.0.0",
+  "description": "Zero-dependency CLI auditor for AI-Search (GEO) readiness: robots.txt AI bots, Cloudflare Content-Signal, llms.txt, llms-full.txt, sitemap.xml and JSON-LD.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "geopulse": "./bin/geopulse.mjs"
+  },
+  "homepage": "https://geopulse-rouge.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9xj89gzrtw-hue/geopulse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/9xj89gzrtw-hue/geopulse/issues"
+  },
+  "keywords": [
+    "geo",
+    "genai",
+    "ai-seo",
+    "ai-search",
+    "llms-txt",
+    "robots-txt",
+    "json-ld",
+    "cloudflare",
+    "content-signal",
+    "cli",
+    "audit"
+  ],
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "node bin/geopulse.mjs",
+    "test": "node --test ../../test_github_cli.mjs"
+  }
+}
