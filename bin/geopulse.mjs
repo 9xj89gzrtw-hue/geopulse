@@ -25,7 +25,8 @@
  * scanner never throws — failures are reported through the result object.
  * ================================================================== */
 
-import { pathToFileURL } from 'node:url';
+import { realpathSync } from 'node:fs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const CLI_VERSION = '1.0.0';
 
@@ -1300,11 +1301,20 @@ export async function main(argv = [], options = {}) {
   return 0;
 }
 
+/**
+ * True when this module is the process entry point.
+ * Symlinks are resolved on both sides, so the CLI still runs when it is
+ * invoked through a linked path (`npm link`, `npx`, `/tmp` -> `/private/tmp`
+ * on macOS, a downloaded copy, ...).
+ */
 function isDirectRun() {
   const entry = process.argv[1];
   if (!entry) return false;
   try {
-    return import.meta.url === pathToFileURL(entry).href;
+    const selfPath = realpathSync(fileURLToPath(import.meta.url));
+    const entryPath = realpathSync(entry);
+    if (selfPath === entryPath) return true;
+    return pathToFileURL(entryPath).href === import.meta.url;
   } catch {
     return false;
   }
