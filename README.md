@@ -54,18 +54,17 @@ Target: https://example.com/
 
   AI crawlers allowed in robots.txt         18/18  PASS
   llms.txt present and structured           12/14  WARN
-  llms-full.txt present for full context      6/8  WARN
+  llms-full.txt present for full context      8/8  PASS
   JSON-LD structured data for AI answers    14/14  PASS
   Canonical + Open Graph metadata           12/12  PASS
   Heading hierarchy and content density     12/12  PASS
   sitemap.xml with lastmod freshness        10/10  PASS
   Fast response and indexable headers       12/12  PASS
   ---------------------------------------------------
-  TOTAL                                    96/100  GRADE A
+  TOTAL                                    98/100  GRADE A
 
 Top fixes:
   1. Complete /llms.txt: add a blockquote summary, "## Section" blocks and markdown links to your key pages.
-  2. Publish /llms-full.txt — a plain-text, heading-structured version of the key pages so answer engines can quote full context.
 
 Full Fix Pack (robots.txt + llms.txt + llms-full.txt + JSON-LD + Cloudflare rules):
   https://geopulse-rouge.vercel.app
@@ -145,7 +144,7 @@ context*. The three things that decide whether your content can be quoted:
 import { auditSite, formatReport } from './bin/geopulse.mjs';
 
 const result = await auditSite('example.com');
-console.log(result.score, result.grade);   // 96 'A'
+console.log(result.score, result.grade);   // 98 'A'
 console.log(formatReport(result));
 ```
 
